@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+
+    @if (session('post_cancellato'))
+        <div class="alert alert-success">
+            {{session('post_cancellato')}}
+        </div>
+    @endif
+
     <table>
         <thead>
             <tr>
@@ -20,7 +27,7 @@
                 <td>
                     <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">SHOW</a>
                     <a href="{{route('admin.posts.edit', $post)}}" class="btn btn-success">EDIT</a>
-                    <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?')">
+                    <form action="{{route('admin.posts.destroy', $post)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?')">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="DELETE" class="btn btn-danger">
