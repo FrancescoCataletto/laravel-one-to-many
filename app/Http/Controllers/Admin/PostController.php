@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -36,7 +36,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255|string',
+            'text' => 'required|string|max:255'
+        ],
+        [
+            'title.required' => 'Bisogna inserire un titolo',
+            'title.max' => 'Il titolo deve essere lungo al massimo 255 caratteri',
+            'title.string' => 'Il titolo deve essere una stringa',
+            'text.required' => 'Bisogna inserire una descrizione',
+            'text.string' => 'Il titolo deve essere una stringa',
+            'text.max' => 'La descrizion deve essere lunga al massimo 255 caratteri'
+        ]
+        );
+
+        $data = $request->all();
+
+        $new_post = new Post();
+
+        $data['slug'] = Post::slugGenerator($new_post['title']);
+
+        $new_post->fill($data);
+
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show', $new_post);
     }
 
     /**
@@ -90,7 +114,7 @@ class PostController extends Controller
         $data['slug'] = Post::slugGenerator($post['title']);
 
         $post->update($data);
-        
+
         return redirect()->route('admin.posts.show', $post);
     }
 
