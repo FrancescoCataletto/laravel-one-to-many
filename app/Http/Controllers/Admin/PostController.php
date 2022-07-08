@@ -70,6 +70,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
         $request->validate([
             'title' => 'required|max:255|string',
             'text' => 'required|string|max:255'
@@ -83,6 +84,14 @@ class PostController extends Controller
             'text.max' => 'La descrizion deve essere lunga al massimo 255 caratteri'
         ]
         );
+
+        $data = $request->all();
+
+        $data['slug'] = Post::slugGenerator($post['title']);
+
+        $post->update($data);
+        
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
