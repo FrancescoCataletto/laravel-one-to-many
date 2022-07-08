@@ -1,0 +1,18 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+table{
+    td{
+        border: 1px solid black;
+        a{
+            margin: 2px;
+            border: 1px solid black;
+        }
+    }
+}
