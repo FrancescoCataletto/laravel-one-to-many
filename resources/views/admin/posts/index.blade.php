@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
 
-    @if (session('post_cancellato'))
+    @if (session('pizza_cancellato'))
         <div class="alert alert-success">
-            {{session('post_cancellato')}}
+            {{session('pizza_cancellato')}}
         </div>
     @endif
 
