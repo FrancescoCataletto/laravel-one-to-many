@@ -39,6 +39,15 @@
           <p class="alert alert-danger">{{$message}}</p>
       @enderror
     </div>
+
+    <select class="form-select" name="category_id">
+      <option selected>Seleziona una categoria</option>
+      @foreach ($categories as $category)
+        <option @if ($category->id == old('category_id', $post->category->id))
+          selected 
+        @endif value="{{$category->id}}">{{$category->name}}</option>
+      @endforeach
+    </select>
     
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

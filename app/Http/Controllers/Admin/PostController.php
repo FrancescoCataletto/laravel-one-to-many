@@ -40,8 +40,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255|string',
-            'text' => 'required|string|max:255',
-            'category_id' => 'max:20|nullable'
+            'text' => 'required|string|max:255'
         ],
         [
             'title.required' => 'Bisogna inserire un titolo',
@@ -49,8 +48,7 @@ class PostController extends Controller
             'title.string' => 'Il titolo deve essere una stringa',
             'text.required' => 'Bisogna inserire una descrizione',
             'text.string' => 'Il titolo deve essere una stringa',
-            'text.max' => 'La descrizion deve essere lunga al massimo 255 caratteri',
-            'category_id.max' => 'La categoria deve avere al massimo 20 caratteri'
+            'text.max' => 'La descrizion deve essere lunga al massimo 255 caratteri'
         ]
         );
 
@@ -86,7 +84,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
