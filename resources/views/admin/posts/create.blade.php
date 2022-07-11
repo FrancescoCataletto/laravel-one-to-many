@@ -38,16 +38,12 @@
       @enderror
     </div>
 
-    <div class="form-group">
-      <label for="category_id">Category</label>
-      <input type="text" class="form-control @error('category_id') isInvalid
-      @enderror" name="category_id" 
-      value="{{old('category_id')}}"
-      placeholder="Category">
-      @error('category_id')
-          <p class="alert alert-danger">{{$message}}</p>
-      @enderror
-    </div>
+    <select class="form-select" name="category_id">
+      <option selected>Seleziona una categoria</option>
+      @foreach ($categories as $category)
+        <option value="{{$category->id}}">{{$category->name}}</option>
+      @endforeach
+    </select>
     
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

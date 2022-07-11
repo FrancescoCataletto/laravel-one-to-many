@@ -15,8 +15,7 @@ class Post extends Model
     protected $fillable = [
         'text',
         'title',
-        'slug',
-        'category_id'
+        'slug'
     ];
 
     public static function slugGenerator($title){
