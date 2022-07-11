@@ -37,6 +37,17 @@
           <p class="alert alert-danger">{{$message}}</p>
       @enderror
     </div>
+
+    <div class="form-group">
+      <label for="category_id">Category</label>
+      <input type="text" class="form-control @error('category_id') isInvalid
+      @enderror" name="category_id" 
+      value="{{old('category_id')}}"
+      placeholder="Category">
+      @error('category_id')
+          <p class="alert alert-danger">{{$message}}</p>
+      @enderror
+    </div>
     
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

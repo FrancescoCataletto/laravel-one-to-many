@@ -25,7 +25,7 @@
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
                 <td>{{$post->text}}</td>
-                <td>{{$post->category->name}}</td>
+                <td>{{$post->category ? $post->category->name : '-' }}</td>
                 <td>
                     <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">SHOW</a>
                     <a href="{{route('admin.posts.edit', $post)}}" class="btn btn-success">EDIT</a>
